@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ludo Master Pro</string>
+    <string name="roll_dice">Lancer le dé</string>
+    <string name="quit_game">Quitter la partie</string>
+    <string name="quit_confirm">La partie en cours sera perdue. Continuer ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="replay">Rejouer</string>
+    <string name="menu">Menu</string>
+    <string name="no_moves">Aucun mouvement possible.</string>
+    <string name="choose_piece">Choisissez un pion</string>
+    <string name="piece_arrived">🏆 Pion arrivé !</string>
+    <string name="replay_six">🎲 6 ! Relancez !</string>
+    <string name="new_record">🏅 NOUVEAU RECORD !</string>
+    <string name="game_over">FIN DE PARTIE</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette principale -->
+    <color name="bg_deep">#080810</color>
+    <color name="bg_dark">#0D0D1A</color>
+    <color name="bg_card">#13132A</color>
+    <color name="primary">#FFD700</color>
+    <color name="primary_dim">#E6C200</color>
+    <color name="accent">#E94560</color>
+    <color name="border">#222244</color>
+    <color name="text_main">#FFFFFF</color>
+    <color name="text_sub">#888899</color>
+    <color name="text_dim">#444466</color>
+
+    <!-- Couleurs des joueurs -->
+    <color name="red">#E53935</color>
+    <color name="red_dark">#B71C1C</color>
+    <color name="blue">#1E88E5</color>
+    <color name="blue_dark">#0D47A1</color>
+    <color name="green">#43A047</color>
+    <color name="green_dark">#1B5E20</color>
+    <color name="yellow">#FDD835</color>
+    <color name="yellow_dark">#F9A825</color>
+
+    <!-- Système -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>

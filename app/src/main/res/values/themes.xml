@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LudoMasterPro" parent="android:Theme.Material.NoTitleBar">
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_deep</item>
+        <item name="android:navigationBarColor">@color/bg_deep</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_main</item>
+        <item name="android:textColorSecondary">@color/text_sub</item>
+        <!-- Compose prend la main, ce thème sert uniquement au splash/démarrage -->
+    </style>
+
+    <!-- Thème splash screen (optionnel) -->
+    <style name="Theme.LudoMasterPro.Splash" parent="Theme.LudoMasterPro">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>

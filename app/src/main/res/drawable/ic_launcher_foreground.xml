@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Corps du dé arrondi -->
+    <path
+        android:pathData="M28,22 L80,22 Q86,22 86,28 L86,80 Q86,86 80,86 L28,86 Q22,86 22,80 L22,28 Q22,22 28,22 Z"
+        android:fillColor="#FFD700"/>
+
+    <!-- Bordure -->
+    <path
+        android:pathData="M28,22 L80,22 Q86,22 86,28 L86,80 Q86,86 80,86 L28,86 Q22,86 22,80 L22,28 Q22,22 28,22 Z"
+        android:strokeColor="#E6A800"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"/>
+
+    <!-- Points (face 6) -->
+    <path android:pathData="M36,36 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+    <path android:pathData="M54,36 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+    <path android:pathData="M72,36 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+    <path android:pathData="M36,72 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+    <path android:pathData="M54,72 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+    <path android:pathData="M72,72 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" android:fillColor="#0D0D1A"/>
+</vector>

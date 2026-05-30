@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fond sombre -->
+    <item>
+        <color android:color="#0D0D1A" />
+    </item>
+    <!-- Icône centrée -->
+    <item
+        android:gravity="center"
+        android:width="96dp"
+        android:height="96dp">
+        <vector
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="96dp"
+            android:height="96dp"
+            android:viewportWidth="96"
+            android:viewportHeight="96">
+            <!-- Dé stylisé -->
+            <path
+                android:pathData="M20,20 L76,20 Q80,20 80,24 L80,72 Q80,76 76,76 L20,76 Q16,76 16,72 L16,24 Q16,20 20,20 Z"
+                android:fillColor="#FFD700" />
+            <path
+                android:pathData="M20,20 L76,20 Q80,20 80,24 L80,72 Q80,76 76,76 L20,76 Q16,76 16,72 L16,24 Q16,20 20,20 Z"
+                android:fillColor="#00000000"
+                android:strokeColor="#E6C200"
+                android:strokeWidth="2" />
+            <!-- Points du dé (6) -->
+            <path android:pathData="M32,32 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+            <path android:pathData="M48,32 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+            <path android:pathData="M64,32 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+            <path android:pathData="M32,64 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+            <path android:pathData="M48,64 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+            <path android:pathData="M64,64 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"
+                  android:fillColor="#0D0D1A"/>
+        </vector>
+    </item>
+</layer-list>

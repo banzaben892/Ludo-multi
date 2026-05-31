@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.animation.animateColor
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -31,14 +32,20 @@ fun MenuScreen(
     onStart:      () -> Unit
 ) {
     // Animation titre
-    val titleColor by rememberInfiniteTransition(label = "title").animateColor(
-        initialValue  = LudoColors.Primary,
-        targetValue   = Color(0xFFFF6B6B),
-        animationSpec = infiniteRepeatable(
-            animation  = tween(1200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ), label = "titleColor"
-    )
+    val infiniteTransition = rememberInfiniteTransition(label = "title")
+
+val titleColor by infiniteTransition.animateColor(
+    initialValue = LudoColors.Primary,
+    targetValue = Color(0xFFFF6B6B),
+    animationSpec = infiniteRepeatable(
+        animation = tween(
+            durationMillis = 1200,
+            easing = FastOutSlowInEasing
+        ),
+        repeatMode = RepeatMode.Reverse
+    ),
+    label = "titleColor"
+)
 
     Box(
         modifier = Modifier

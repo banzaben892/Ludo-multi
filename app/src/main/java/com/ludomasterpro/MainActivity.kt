@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.CompositionLocalProvider          // ← AJOUTER
+import androidx.compose.ui.platform.LocalLifecycleOwner        // ← AJOUTER
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ludomasterpro.engine.GamePhase
 import com.ludomasterpro.engine.GameViewModel
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            // ✅ Force la présence du LifecycleOwner
+            // Force la présence du LifecycleOwner
             CompositionLocalProvider(
                 LocalLifecycleOwner provides this
             ) {

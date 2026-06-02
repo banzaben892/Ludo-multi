@@ -20,7 +20,6 @@ import com.ludomasterpro.ui.screens.PodiumScreen
 import com.ludomasterpro.ui.theme.LudoMasterTheme
 
 class MainActivity : ComponentActivity() {
-
     private val viewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +27,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            LudoMasterTheme {
-                LudoApp(viewModel = viewModel)
+            // ✅ Force la présence du LifecycleOwner
+            CompositionLocalProvider(
+                LocalLifecycleOwner provides this
+            ) {
+                LudoMasterTheme {
+                    LudoApp(viewModel = viewModel)
+                }
             }
         }
     }

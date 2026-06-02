@@ -2,27 +2,43 @@ package com.ludomasterpro
 
 import android.content.Context
 import android.util.Log
+import java.io.File
 import java.io.PrintWriter
 import java.io.StringWriter
 
-class CrashHandler(private val context: Context) : Thread.UncaughtExceptionHandler {
+class CrashHandler(
+    private val context: Context
+) : Thread.UncaughtExceptionHandler {
 
-    private val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+    private val defaultHandler =
+        Thread.getDefaultUncaughtExceptionHandler()
 
-    override fun uncaughtException(thread: Thread, throwable: Throwable) {
-
-        val sw = StringWriter()
-        throwable.printStackTrace(PrintWriter(sw))
-        val error = sw.toString()
-
-        Log.e("CRASH_HANDLER", error)
+    override fun uncaughtException(
+        thread: Thread,
+        throwable: Throwable
+    ) {
 
         try {
-            val file = context.openFileOutput("crash_log.txt", Context.MODE_PRIVATE)
-            file.write(error.toByteArray())
-            file.close()
+            val sw = StringWriter()
+            throwable.printStackTrace(PrintWriter(sw))
+
+            val crashText = """
+                ===== CRASH =====
+                Thread: ${thread.name}
+                
+                ${sw}
+            """.trimIndent()
+
+            Log.e("CRASH_HANDLER", crashText)
+
+            val file = File(
+                context.filesDir,
+                "crash_log.txt"
+            )
+
+            file.appendText(crashText + "\n\n")
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("CRASH_HANDLER", "Failed to save crash", e)
         }
 
         defaultHandler?.uncaughtException(thread, throwable)

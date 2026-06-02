@@ -114,7 +114,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val s = _state.value
         val player = s.currentPlayer ?: return
         if (player.hasWon) {
-            // Trouver un joueur non-fini
             advanceTurnSkipWinners()
             return
         }
@@ -145,7 +144,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         if (s.animating || s.waitingForChoice) return
         val player = s.currentPlayer ?: return
         if (player.type != PlayerType.HUMAN) return
-        // L'UI gère l'animation du dé et appelle applyDiceResult()
     }
 
     fun applyDiceResult(dice: Int) {
@@ -220,7 +218,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 finalizePieceMove(pieceId, path.last())
                 return@launch
             }
-            // Mettre à jour la position visuelle du pion pour l'animation
             val s = _state.value
             val players = s.players.map { pl ->
                 val pieces = pl.pieces.map { p ->
@@ -254,7 +251,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 if (s.dice == 6) {
                     _state.value = s.copy(message = "🎲 6 ! Relancez !")
-                    // Le bouton dé redevient actif (géré dans l'UI par dice != 0 && message contient Relancez)
                 } else {
                     finishTurn()
                 }
@@ -281,13 +277,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun replayGame() { startGame() }
 
     // ═══════════════════════════════════════════════════════════
-    //  MÉTHODE APPLYMOVE POUR L'UI (CORRECTION BUG)
+    //  MÉTHODES APPLYMOVE POUR L'UI (CORRECTIONS)
     // ═══════════════════════════════════════════════════════════
     
+    // Méthode qui accepte un objet Move (déjà existante)
     fun applyMove(move: Any) {
-        // Cette méthode est appelée par GameScreen.
-        // La logique de mouvement est déjà gérée par selectPiece et applyDiceResult.
-        // Si on reçoit un objet Move explicite, on le traite.
         when (move) {
             is Move -> {
                 when (move.type) {
@@ -297,22 +291,17 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                         val newState = LudoRules.applyMove(_state.value, pieceId, newPos)
                         _state.value = newState
                     }
-                    MoveType.KILL_TOKEN -> {
-                        // Déjà géré par LudoRules.applyMove
-                    }
-                    MoveType.REACH_GOAL -> {
+                    MoveType.KILL_TOKEN, MoveType.REACH_GOAL -> {
                         // Déjà géré par LudoRules.applyMove
                     }
                 }
                 
-                // Vérifier si la partie est finie
                 if (_state.value.phase == GamePhase.FINISHED) {
                     val winner = _state.value.ranking.firstOrNull()
                     if (winner != null) saveScore(winner.name, _state.value.totalTurns)
                     return
                 }
                 
-                // Continuer le jeu
                 viewModelScope.launch {
                     delay(350)
                     val s = _state.value
@@ -322,6 +311,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
         }
+    }
+    
+    // Méthode qui accepte deux paramètres (pieceId et newPos) pour l'UI
+    fun applyMove(pieceId: String, newPos: Int) {
+        val move = Move(
+            type = MoveType.MOVE_TOKEN,
+            tokenId = pieceId,
+            newPosition = newPos
+        )
+        applyMove(move)
     }
 }
 

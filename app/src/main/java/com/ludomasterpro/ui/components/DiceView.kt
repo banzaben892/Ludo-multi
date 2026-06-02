@@ -27,6 +27,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+// ═══════════════════════════════════════════════════════════════
+//  CONSTANTES DES FACES DU DÉ (CORRECTION BUG)
+// ═══════════════════════════════════════════════════════════════
+
+private val DICE_FACES = listOf("⚀", "⚁", "⚂", "⚃", "⚄", "⚅")
+
+// Alternative avec des émojis (si vous préférez) :
+// private val DICE_FACES = listOf("1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣")
+
 @Composable
 fun DiceAreaRow(
     currentValue:  Int,

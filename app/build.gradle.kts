@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace   = "com.ludomasterpro"
-    compileSdk  = 35
+    compileSdk  = 34
 
     defaultConfig {
         applicationId  = "com.ludomasterpro"
         minSdk         = 24
-        targetSdk      = 35
+        targetSdk      = 34
         versionCode    = (System.getenv("VERSION_CODE") ?: "1").toInt()
         versionName    = System.getenv("VERSION_NAME") ?: "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

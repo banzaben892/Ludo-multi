@@ -6,25 +6,21 @@ plugins {
 
 android {
     namespace   = "com.ludomasterpro"
-    compileSdk  = 34
+    compileSdk  = 35  // ✅ mis à jour vers 35
 
     defaultConfig {
         applicationId  = "com.ludomasterpro"
         minSdk         = 24
-        targetSdk      = 34
+        targetSdk      = 35  // ✅ mis à jour vers 35
         versionCode    = (System.getenv("VERSION_CODE") ?: "1").toInt()
         versionName    = System.getenv("VERSION_NAME") ?: "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // ── Pas de keystore : on laisse Gradle utiliser le debug
-    //    signing par défaut pour toutes les variantes.
-    //    En release, le workflow CI signe avec apksigner + clé éphémère.
     buildTypes {
         release {
             isMinifyEnabled   = true
             isShrinkResources = true
-            // Signé après le build via apksigner (voir workflow)
             signingConfig = null
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -43,7 +39,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
+        kotlinCompilerExtensionVersion = "1.5.14"  // ✅ mis à jour
     }
 
     compileOptions {
@@ -63,7 +59,7 @@ android {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
+    val composeBom = platform("androidx.compose:compose-bom:2024.11.00")  // ✅ mis à jour
     implementation(composeBom)
 
     // Compose UI
@@ -77,14 +73,14 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // ViewModel + Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.1")
+    // ViewModel + Lifecycle (versions compatibles)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")   // ✅ mis à jour
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")     // ✅ mis à jour
 
     // Activity
-    implementation("androidx.activity:activity-compose:1.9.0")
+    implementation("androidx.activity:activity-compose:1.9.3")  // ✅ mis à jour
 
-    // DataStore (persistance records)
+    // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     // Core KTX

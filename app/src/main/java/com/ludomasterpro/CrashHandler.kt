@@ -1,3 +1,5 @@
+package com.ludomasterpro
+
 import android.content.Context
 import android.util.Log
 import java.io.PrintWriter
@@ -9,15 +11,12 @@ class CrashHandler(private val context: Context) : Thread.UncaughtExceptionHandl
 
     override fun uncaughtException(thread: Thread, throwable: Throwable) {
 
-        // Convertir erreur en texte
         val sw = StringWriter()
         throwable.printStackTrace(PrintWriter(sw))
         val error = sw.toString()
 
-        // Logcat (visible dans GitHub Actions logs)
         Log.e("CRASH_HANDLER", error)
 
-        // Sauvegarde dans fichier
         try {
             val file = context.openFileOutput("crash_log.txt", Context.MODE_PRIVATE)
             file.write(error.toByteArray())
@@ -26,7 +25,6 @@ class CrashHandler(private val context: Context) : Thread.UncaughtExceptionHandl
             e.printStackTrace()
         }
 
-        // Laisser Android fermer l'app
         defaultHandler?.uncaughtException(thread, throwable)
     }
 }

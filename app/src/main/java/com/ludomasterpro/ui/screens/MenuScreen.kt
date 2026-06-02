@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import com.ludomasterpro.engine.*
 import com.ludomasterpro.ui.theme.LudoColors
 
@@ -31,24 +32,19 @@ fun MenuScreen(
     onStart:      () -> Unit
 ) {
     // ═══════════════════════════════════════════════════════════════
-    //  ANIMATION DU TITRE (CORRECTION BUG - animateColorAsState)
+    //  ANIMATION DU TITRE (VERSION SIMPLIFIÉE SANS BUG)
     // ═══════════════════════════════════════════════════════════════
     
-    var isTitleAnimating by remember { mutableStateOf(true) }
-    
-    val titleColor by animateColorAsState(
-        targetValue = if (isTitleAnimating) Color(0xFFFF6B6B) else LudoColors.Primary,
-        animationSpec = tween(durationMillis = 1200, easing = FastOutSlowInEasing),
+    val infiniteTransition = rememberInfiniteTransition(label = "title")
+    val titleColor by infiniteTransition.animateColor(
+        initialValue = LudoColors.Primary,
+        targetValue = Color(0xFFFF6B6B),
+        animationSpec = infiniteRepeatable(
+            animation = tween(1200, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
         label = "titleColor"
     )
-    
-    // Effet pour faire rebondir l'animation en boucle
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(1200)
-            isTitleAnimating = !isTitleAnimating
-        }
-    }
 
     Box(
         modifier = Modifier
@@ -266,4 +262,4 @@ fun LudoCard(
             content()
         }
     }
-} 
+}

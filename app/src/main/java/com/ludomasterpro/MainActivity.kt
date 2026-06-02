@@ -10,8 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ludomasterpro.engine.GamePhase
-import com.ludomasterpro.engine.GameViewModel
+import com.ludomasterpro.engine.*
 import com.ludomasterpro.ui.screens.GameScreen
 import com.ludomasterpro.ui.screens.MenuScreen
 import com.ludomasterpro.ui.screens.PodiumScreen
@@ -53,7 +52,7 @@ fun LudoApp(viewModel: GameViewModel) {
                 state        = state,
                 onRollResult = viewModel::applyDiceResult,
                 onPieceClick = viewModel::selectPiece,
-                onApplyMove  = { pieceId, newPos -> viewModel.applyMove(pieceId, newPos) },  // ✅ CORRIGÉ
+                onApplyMove  = { pieceId, newPos -> viewModel.applyMove(pieceId, newPos) },
                 onQuit       = { showQuit = true }
             )
             if (showQuit) {

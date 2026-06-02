@@ -30,15 +30,25 @@ fun MenuScreen(
     onConfig:     (Int, PlayerConfig) -> Unit,
     onStart:      () -> Unit
 ) {
-    // Animation titre
-    val titleColor by rememberInfiniteTransition(label = "title").animateColor(
-        initialValue  = LudoColors.Primary,
-        targetValue   = Color(0xFFFF6B6B),
-        animationSpec = infiniteRepeatable(
-            animation  = tween(1200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ), label = "titleColor"
+    // ═══════════════════════════════════════════════════════════════
+    //  ANIMATION DU TITRE (CORRECTION BUG - animateColorAsState)
+    // ═══════════════════════════════════════════════════════════════
+    
+    var isTitleAnimating by remember { mutableStateOf(true) }
+    
+    val titleColor by animateColorAsState(
+        targetValue = if (isTitleAnimating) Color(0xFFFF6B6B) else LudoColors.Primary,
+        animationSpec = tween(durationMillis = 1200, easing = FastOutSlowInEasing),
+        label = "titleColor"
     )
+    
+    // Effet pour faire rebondir l'animation en boucle
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(1200)
+            isTitleAnimating = !isTitleAnimating
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -256,4 +266,4 @@ fun LudoCard(
             content()
         }
     }
-}
+} 

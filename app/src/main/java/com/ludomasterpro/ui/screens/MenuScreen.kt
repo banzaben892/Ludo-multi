@@ -1,6 +1,5 @@
 package com.ludomasterpro.ui.screens
 
-import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,7 +14,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.delay
 import com.ludomasterpro.engine.*
 import com.ludomasterpro.ui.theme.LudoColors
 
@@ -31,20 +29,8 @@ fun MenuScreen(
     onConfig:     (Int, PlayerConfig) -> Unit,
     onStart:      () -> Unit
 ) {
-    // ═══════════════════════════════════════════════════════════════
-    //  ANIMATION DU TITRE (VERSION SIMPLIFIÉE SANS BUG)
-    // ═══════════════════════════════════════════════════════════════
-    
-    val infiniteTransition = rememberInfiniteTransition(label = "title")
-    val titleColor by infiniteTransition.animateColor(
-        initialValue = LudoColors.Primary,
-        targetValue = Color(0xFFFF6B6B),
-        animationSpec = infiniteRepeatable(
-            animation = tween(1200, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "titleColor"
-    )
+    // Couleur fixe pour le titre (pas d'animation)
+    val titleColor = LudoColors.Primary
 
     Box(
         modifier = Modifier
@@ -162,7 +148,7 @@ fun MenuScreen(
     }
 }
 
-// ── Ligne de config d'un joueur ──────────────────────────────
+// ── Ligne de config d'un joueur (inchangée) ─────────────────
 @Composable
 fun PlayerConfigRow(
     color:    PieceColor,
@@ -171,7 +157,6 @@ fun PlayerConfigRow(
 ) {
     val pColor = color.composeColor()
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        // Couleur + Nom
         Row(verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Text("${color.emoji} ${color.label}",
@@ -196,7 +181,6 @@ fun PlayerConfigRow(
             )
         }
 
-        // IA toggle + niveau
         Row(verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("IA", fontFamily = FontFamily.Monospace,
@@ -237,7 +221,6 @@ fun PlayerConfigRow(
     }
 }
 
-// ── Card réutilisable ─────────────────────────────────────────
 @Composable
 fun LudoCard(
     title: String? = null,

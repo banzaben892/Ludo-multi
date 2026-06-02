@@ -53,7 +53,7 @@ fun LudoApp(viewModel: GameViewModel) {
                 state        = state,
                 onRollResult = viewModel::applyDiceResult,
                 onPieceClick = viewModel::selectPiece,
-                onApplyMove  = viewModel::applyMove,
+                onApplyMove  = { move -> viewModel.applyMove(move) },
                 onQuit       = { showQuit = true }
             )
             if (showQuit) {
